@@ -4,5 +4,16 @@
     <string name="app_name">wineApp</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
+    
+    <string name="edit_message">Enter a message</string>
+    <string name="takePhoto">Take a photo</string>
+    <string name="title_activity_display_message">My Message</string>
 
+    <string name="hello">Hello World, PhotoIntentActivity!</string>
+    <string name="btnIntend">Take (big) Picture</string>
+    <string name="btnIntendS">Take (small) Picture</string>
+    <string name="cannot">Cannot</string>
+    <string name="album_name">CameraSample</string>
+    
+    
 </resources>
