@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -22,8 +23,15 @@ import android.widget.ImageView;
 
 public class MainActivity extends Activity 
 {
+	private int mWineNumber = 1;
+	
 	private ImageView mImageView;
 	private Bitmap mImageBitmap;
+	
+	/****DB Variables****/
+	private WineDBAdapter mDbHelper;
+    public static final int INSERT_ID = Menu.FIRST;
+	
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) 
@@ -32,6 +40,10 @@ public class MainActivity extends Activity
         setContentView(R.layout.activity_main);
         
         mImageView = (ImageView) findViewById(R.id.imageView1);
+        
+        mDbHelper = new WineDBAdapter(this);
+        mDbHelper.open();
+        //fillData();
         
 //      Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE); //Request an image from an existing camera application
 //    	startActivityForResult(takePictureIntent, 1); //Start the camera intent
@@ -103,10 +115,8 @@ public class MainActivity extends Activity
     	Bundle extras = intent.getExtras();
 		mImageBitmap = (Bitmap) extras.get("data");
 		
-		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-		String imageFileName = "wineapp_" + timeStamp;
 				
-		FileOutputStream fos;
+		/*FileOutputStream fos;
 		try {
 			fos = openFileOutput(imageFileName, Context.MODE_PRIVATE);
 			mImageBitmap.compress(Bitmap.CompressFormat.JPEG, 90, fos);
@@ -115,11 +125,21 @@ public class MainActivity extends Activity
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		
+		}*/
+		createWine();
 		mImageView.setImageBitmap(mImageBitmap);
 		mImageView.setVisibility(View.VISIBLE);
     }
 
+    private void createWine() {
+        
+    	String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+		String imageFileName = "wineapp_" + timeStamp;
+    	
+		String noteName = "Wine " + mWineNumber++;
+        mDbHelper.createWine(noteName, imageFileName);
+        //fillData();
+    }
+    
     
 }
