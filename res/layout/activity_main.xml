@@ -3,7 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity" >
-
+	<!-- <ListView 
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content">
+	</ListView>-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,15 +20,22 @@
         android:text="@string/takePhoto"
         android:onClick="photoButtonResponse"/>
     
+    
+    <Button
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/viewGallery"
+        android:onClick="viewGalleryResponse"/>
       <!-- android:layout_height="wrap_content" 
       android:layout_width="wrap_content"  -->
-    <ImageView 
-      android:layout_centerHorizontal="true"
-      android:layout_centerVertical="true"
-      android:layout_width="750px"
-      android:layout_height="750px"
-      android:visibility="visible"
-      android:id="@+id/imageView1" />
-    
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="750px"
+        android:layout_height="750px"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:visibility="visible" />
 
 </RelativeLayout>

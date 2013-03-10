@@ -9,6 +9,7 @@ import java.util.List;
 
 
 import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -115,20 +116,10 @@ public class MainActivity extends Activity
     	Bundle extras = intent.getExtras();
 		mImageBitmap = (Bitmap) extras.get("data");
 		
-				
-		/*FileOutputStream fos;
-		try {
-			fos = openFileOutput(imageFileName, Context.MODE_PRIVATE);
-			mImageBitmap.compress(Bitmap.CompressFormat.JPEG, 90, fos);
-			fos.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}*/
 		createWine();
-		mImageView.setImageBitmap(mImageBitmap);
-		mImageView.setVisibility(View.VISIBLE);
+		
+		//mImageView.setImageBitmap(mImageBitmap);
+		//mImageView.setVisibility(View.VISIBLE);
     }
 
     private void createWine() {
@@ -138,8 +129,13 @@ public class MainActivity extends Activity
     	
 		String noteName = "Wine " + mWineNumber++;
         mDbHelper.createWine(noteName, imageFileName);
-        //fillData();
     }
     
+    
+    public void viewGalleryResponse(View v) 
+    {
+    	Intent myIntent = new Intent(v.getContext(), GalleryActivity.class);
+        startActivityForResult(myIntent, 0);
+    }
     
 }
