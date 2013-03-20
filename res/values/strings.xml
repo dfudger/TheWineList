@@ -15,7 +15,7 @@
     <string name="btnIntendS">Take (small) Picture</string>
     <string name="cannot">Cannot</string>
     <string name="album_name">CameraSample</string>
-    
+    <string name="addNewWine">Add a New Wine</string>
     <color name="red">#C00000</color>
     
 </resources>

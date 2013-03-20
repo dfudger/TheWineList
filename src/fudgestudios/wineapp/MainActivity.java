@@ -1,5 +1,7 @@
 package fudgestudios.wineapp;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -14,8 +16,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
@@ -33,7 +38,6 @@ public class MainActivity extends Activity
 	private WineDBAdapter mDbHelper;
     public static final int INSERT_ID = Menu.FIRST;
 	
-	
     @Override
     protected void onCreate(Bundle savedInstanceState) 
     {
@@ -43,13 +47,7 @@ public class MainActivity extends Activity
         mImageView = (ImageView) findViewById(R.id.imageView1);
         
         mDbHelper = new WineDBAdapter(this);
-        mDbHelper.open();
-        //fillData();
-        
-//      Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE); //Request an image from an existing camera application
-//    	startActivityForResult(takePictureIntent, 1); //Start the camera intent
-        // dispatchTakePictureIntent(1);
-        
+        mDbHelper.open();     
     }
 
 
@@ -67,29 +65,24 @@ public class MainActivity extends Activity
     {
     	//Compose a camera intent
     	Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE); //Request an image from an existing camera application
+
     	startActivityForResult(takePictureIntent, actionCode); //Start the camera intent
-    	// handleSmallCameraPhoto(takePictureIntent);
-    	
     }
     
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		switch (requestCode) {
-		/*case ACTION_TAKE_PHOTO_B: {
-			if (resultCode == RESULT_OK) {
-				handleBigCameraPhoto();
-			}
-			break;
-		} // ACTION_TAKE_PHOTO_B*/
-
-		case 1: {
-			if (resultCode == RESULT_OK) {
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) 
+	{
+		if (resultCode == RESULT_OK) 
+		{
+			try 
+			{
 				handleSmallCameraPhoto(data);
+			} 
+			catch (FileNotFoundException e) 
+			{
+				e.printStackTrace();
 			}
-			break;
-		} // ACTION_TAKE_PHOTO_S
-
-		} // switch
+		}	 
 	}
 
    
@@ -97,8 +90,6 @@ public class MainActivity extends Activity
     {
     	Log.w("WineApp","LOL taking photo.");
     	dispatchTakePictureIntent(1);
-    	
-    	//handleSmallCameraPhoto();
     }
     
     public static boolean isIntentAvailable(Context context, String action)
@@ -111,31 +102,81 @@ public class MainActivity extends Activity
     	return list.size() > 0;
     }
     
-    private void handleSmallCameraPhoto(Intent intent) 
+    private void handleSmallCameraPhoto(Intent intent) throws FileNotFoundException 
     {
     	Bundle extras = intent.getExtras();
 		mImageBitmap = (Bitmap) extras.get("data");
 		
-		createWine();
+		//Make a call for more info about the image
 		
-		//mImageView.setImageBitmap(mImageBitmap);
-		//mImageView.setVisibility(View.VISIBLE);
+		
+		ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+		mImageBitmap.compress(Bitmap.CompressFormat.JPEG, 80, bytes);
+		
+		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+		String imageFileName = "wineapp_" + timeStamp + ".jpg";
+		
+		imageFileName = (Environment.getExternalStorageDirectory() + File.separator + imageFileName);
+		
+		//you can create a new file name "test.jpg" in sdcard folder.
+		File f = new File(imageFileName);
+		try 
+		{
+			f.createNewFile();
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
+		
+		//write the bytes in file
+		FileOutputStream fo = new FileOutputStream(f);
+		try 
+		{
+			fo.write(bytes.toByteArray());
+		} 
+		catch (IOException e1) 
+		{
+			e1.printStackTrace();
+		}
+
+		// remember close de FileOutput
+		try 
+		{
+			fo.close();
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
+		
+		createWine();
     }
 
+    
     private void createWine() {
-        
+         
     	String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-		String imageFileName = "wineapp_" + timeStamp;
+		String imageFileName = "wineapp_" + timeStamp + ".jpg";
+		
+		imageFileName = (Environment.getExternalStorageDirectory() + File.separator + imageFileName);
     	
 		String noteName = "Wine " + mWineNumber++;
         mDbHelper.createWine(noteName, imageFileName);
     }
     
+    public void getNewPhotoInfo(View v)
+    {
+    	Intent myIntent = new Intent(v.getContext(), CreateBottleActivity.class);
+        startActivityForResult(myIntent, 0);
+    }
     
     public void viewGalleryResponse(View v) 
     {
     	Intent myIntent = new Intent(v.getContext(), GalleryActivity.class);
         startActivityForResult(myIntent, 0);
     }
+    
+   
     
 }

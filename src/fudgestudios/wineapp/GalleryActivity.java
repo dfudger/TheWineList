@@ -37,8 +37,10 @@ public class GalleryActivity extends Activity
 	    GridView gridview = (GridView) findViewById(R.id.gridview);
 	    gridview.setAdapter(new ImageAdapter(this, mArrayList));
 
-	    gridview.setOnItemClickListener(new OnItemClickListener() {
-	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+	    gridview.setOnItemClickListener(new OnItemClickListener() 
+	    {
+	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) 
+	        {
 	            Toast.makeText(GalleryActivity.this, "" + position, Toast.LENGTH_SHORT).show();
 	        }
 	    });
@@ -72,34 +74,5 @@ public class GalleryActivity extends Activity
 			mArrayList.add(mCursor.getString(2));
 		}
 	} 
-	
-	/**
-	 * 
-	 
-	private void getDataAndPopulate() {
-
-	    ArrayList<byte[]> image = new ArrayList<byte[]>();
-	    //ArrayList<String> caption = new ArrayList<String>();
-
-	    //mCursor=db.rawQuery("select * from NAME",null);
-
-
-	    while (mCursor.moveToNext()) {
-
-	        byte[] temp_image = mCursor.getBlob(2);
-	        String temp_caption = mCursor.getString(1);
-	        String temp_id= mCursor.getString(0);
-	        image.add(temp_image);
-	        caption.add(temp_caption);
-	        id.add(temp_id);
-	    }
-	    String[] captionArray = (String[]) caption.toArray(
-	            new String[caption.size()]);
-
-	    ImageAdapter itemsAdapter = new ImageAdapter(Item_show_grid.this, R.layout.item_grid,captionArray);
-	    gv.setAdapter(itemsAdapter);
-
-	}*/
-	
 
 }

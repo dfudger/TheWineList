@@ -1,8 +1,13 @@
 package fudgestudios.wineapp;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Environment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -21,7 +26,7 @@ public class ImageAdapter extends BaseAdapter
     }
 
 	public int getCount() {
-        return mThumbIds.length;
+        return urlArray.size();//.length;
     }
 
     public Object getItem(int position) {
@@ -39,17 +44,23 @@ public class ImageAdapter extends BaseAdapter
         ImageView imageView;
         if (convertView == null) {  // if it's not recycled, initialize some attributes
             imageView = new ImageView(mContext);
-            imageView.setLayoutParams(new GridView.LayoutParams(85, 85));
+            //imageView.setLayoutParams(new GridView.LayoutParams(85, 85));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageView.setPadding(8, 8, 8, 8);
         } else {
             imageView = (ImageView) convertView;
         }
 
-        Integer image = mThumbIds[position];
+        // Integer image = mThumbIds[position];
         
-        imageView.setImageResource(image);
-        // imageView.setImageBitmap(image);
+        //imageView.setImageResource(image);
+
+        Bitmap myBitmap = BitmapFactory.decodeFile(urlArray.get(position));
+        imageView.setImageBitmap(myBitmap);
+        
+        //imageView.setImageURI("/sdcard/DCIM/Camera/" + urlArray.get(position)+".jpg").toString()));
+        //imageView.setImageURI(urlArray.get(position));
+        //imageView.setImageBitmap(image);
         return imageView;
     }
 

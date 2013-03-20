@@ -26,18 +26,24 @@ public final class R {
         public static final int sample_7=0x7f020009;
     }
     public static final class id {
+        public static final int button1=0x7f080005;
+        public static final int editText1=0x7f080003;
         public static final int gridview=0x7f080001;
         public static final int imageView1=0x7f080000;
-        public static final int menu_settings=0x7f080002;
+        public static final int imageView2=0x7f080004;
+        public static final int menu_settings=0x7f080006;
+        public static final int textView1=0x7f080002;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
         public static final int gallery=0x7f030001;
+        public static final int new_bottle=0x7f030002;
     }
     public static final class menu {
         public static final int activity_main=0x7f070000;
     }
     public static final class string {
+        public static final int addNewWine=0x7f04000c;
         public static final int album_name=0x7f04000b;
         public static final int app_name=0x7f040000;
         public static final int btnIntend=0x7f040008;
