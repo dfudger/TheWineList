@@ -30,9 +30,9 @@ import android.widget.ImageView;
 public class MainActivity extends Activity 
 {
 	private int mWineNumber = 1;
-	
 	private ImageView mImageView;
 	private Bitmap mImageBitmap;
+	private String imageFileName;
 	
 	/****DB Variables****/
 	private WineDBAdapter mDbHelper;
@@ -85,7 +85,6 @@ public class MainActivity extends Activity
 		}	 
 	}
 
-   
     public void photoButtonResponse(View v) 
     {
     	Log.w("WineApp","LOL taking photo.");
@@ -107,18 +106,14 @@ public class MainActivity extends Activity
     	Bundle extras = intent.getExtras();
 		mImageBitmap = (Bitmap) extras.get("data");
 		
-		//Make a call for more info about the image
-		
-		
 		ByteArrayOutputStream bytes = new ByteArrayOutputStream();
 		mImageBitmap.compress(Bitmap.CompressFormat.JPEG, 80, bytes);
 		
 		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-		String imageFileName = "wineapp_" + timeStamp + ".jpg";
+		imageFileName = "wineapp_" + timeStamp + ".jpg";
 		
 		imageFileName = (Environment.getExternalStorageDirectory() + File.separator + imageFileName);
 		
-		//you can create a new file name "test.jpg" in sdcard folder.
 		File f = new File(imageFileName);
 		try 
 		{
@@ -140,7 +135,6 @@ public class MainActivity extends Activity
 			e1.printStackTrace();
 		}
 
-		// remember close de FileOutput
 		try 
 		{
 			fo.close();
@@ -150,11 +144,24 @@ public class MainActivity extends Activity
 			e.printStackTrace();
 		}
 		
-		createWine();
+		dispatchEditBottleIntent();
+		//createWine();
     }
 
+    /**** Edit Wine Info ****/
+    private void dispatchEditBottleIntent()
+    {
+    	Intent bottleIntent = new Intent(this, CreateBottleActivity.class); //Request an image from an existing camera application
+    	bottleIntent.putExtra("bitmap", mImageBitmap);
+    	System.out.println("File Name Before Sent: " + imageFileName);
+    	bottleIntent.putExtra("fileName", imageFileName);
+    	startActivity(bottleIntent); 
+    }
     
-    private void createWine() {
+	
+    
+    
+   /* private void createWine() {
          
     	String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 		String imageFileName = "wineapp_" + timeStamp + ".jpg";
@@ -163,7 +170,7 @@ public class MainActivity extends Activity
     	
 		String noteName = "Wine " + mWineNumber++;
         mDbHelper.createWine(noteName, imageFileName);
-    }
+    } */
     
     public void getNewPhotoInfo(View v)
     {
@@ -176,7 +183,4 @@ public class MainActivity extends Activity
     	Intent myIntent = new Intent(v.getContext(), GalleryActivity.class);
         startActivityForResult(myIntent, 0);
     }
-    
-   
-    
 }

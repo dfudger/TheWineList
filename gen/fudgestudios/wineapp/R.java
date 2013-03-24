@@ -26,8 +26,8 @@ public final class R {
         public static final int sample_7=0x7f020009;
     }
     public static final class id {
-        public static final int button1=0x7f080005;
-        public static final int editText1=0x7f080003;
+        public static final int btnSave=0x7f080005;
+        public static final int editTitle=0x7f080003;
         public static final int gridview=0x7f080001;
         public static final int imageView1=0x7f080000;
         public static final int imageView2=0x7f080004;
