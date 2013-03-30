@@ -8,6 +8,7 @@
     <string name="edit_message">Enter a message</string>
     <string name="takePhoto">Take a photo</string>
     <string name="viewGallery">View Gallery</string>
+    <string name="bottleTitle">Title of Bottle</string>
     <string name="title_activity_display_message">My Message</string>
 
     <string name="hello">Hello World, PhotoIntentActivity!</string>

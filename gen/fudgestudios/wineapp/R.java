@@ -38,23 +38,25 @@ public final class R {
         public static final int activity_main=0x7f030000;
         public static final int gallery=0x7f030001;
         public static final int new_bottle=0x7f030002;
+        public static final int view_bottle=0x7f030003;
     }
     public static final class menu {
         public static final int activity_main=0x7f070000;
     }
     public static final class string {
-        public static final int addNewWine=0x7f04000c;
-        public static final int album_name=0x7f04000b;
+        public static final int addNewWine=0x7f04000d;
+        public static final int album_name=0x7f04000c;
         public static final int app_name=0x7f040000;
-        public static final int btnIntend=0x7f040008;
-        public static final int btnIntendS=0x7f040009;
-        public static final int cannot=0x7f04000a;
+        public static final int bottleTitle=0x7f040006;
+        public static final int btnIntend=0x7f040009;
+        public static final int btnIntendS=0x7f04000a;
+        public static final int cannot=0x7f04000b;
         public static final int edit_message=0x7f040003;
-        public static final int hello=0x7f040007;
+        public static final int hello=0x7f040008;
         public static final int hello_world=0x7f040001;
         public static final int menu_settings=0x7f040002;
         public static final int takePhoto=0x7f040004;
-        public static final int title_activity_display_message=0x7f040006;
+        public static final int title_activity_display_message=0x7f040007;
         public static final int viewGallery=0x7f040005;
     }
     public static final class style {
