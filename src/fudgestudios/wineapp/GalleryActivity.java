@@ -81,7 +81,7 @@ public class GalleryActivity extends Activity
 	/**** Edit Wine Info ****/
     private void dispatchViewBottleIntent()
     {
-    	Intent bottleIntent = new Intent(this, CreateBottleActivity.class); //Request an image from an existing camera application
+    	Intent bottleIntent = new Intent(this, ViewBottleActivity.class); //Request an image from an existing camera application
     	//System.out.println("File Name Before Sent: " + imageFileName);
     	//bottleIntent.putExtra("fileName", imageFileName);
     	startActivity(bottleIntent); 
