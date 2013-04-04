@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:orientation="vertical" 
    >
     
@@ -12,17 +13,18 @@
         android:text="@string/addNewWine"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     
-    <TextView
+   <!--  <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="@string/addNewWine" />
-
+ -->
     <EditText
         android:id="@+id/editTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:ems="10" />
 
     <ImageView
@@ -34,10 +36,13 @@
     <Button
         android:id="@+id/btnSave"
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" 
-        android:paddingTop="10px"
+        android:text="@string/saveWine" 
+        android:layout_margin="20dp"
+        android:background="@color/red"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         android:onClick="createWine"/>
 
 </LinearLayout>
