@@ -2,18 +2,16 @@ package fudgestudios.wineapp;
 
 import java.util.ArrayList;
 
-import fudgestudios.wineapp.R.id;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
-import android.widget.Toast;
 
 /**
  * @author dfudger
@@ -44,7 +42,7 @@ public class GalleryActivity extends Activity
 	        {
 	            //Toast.makeText(GalleryActivity.this, "" + position, Toast.LENGTH_SHORT).show();
 	        	
-	        	dispatchViewBottleIntent();
+	        	dispatchViewBottleIntent(position);
 	        }
 	    });
 	    
@@ -77,14 +75,26 @@ public class GalleryActivity extends Activity
 			mArrayList.add(mCursor.getString(2));
 		}
 	} 
+
 	
-	/**** Edit Wine Info ****/
-    private void dispatchViewBottleIntent()
+	
+	/**** View Wine Info ****/
+    private void dispatchViewBottleIntent(int position)
     {
+    	position++;
+    	Log.w("WineApp","In Dispatch");
+    	Cursor curs;
+    	Log.w("WineApp", ""+position);
+    	curs = mDbHelper.fetchWine((long) position);
+    	
     	Intent bottleIntent = new Intent(this, ViewBottleActivity.class); //Request an image from an existing camera application
-    	//System.out.println("File Name Before Sent: " + imageFileName);
-    	//bottleIntent.putExtra("fileName", imageFileName);
+    
+    	
+    	System.out.println("File Name Before Sent: " + curs.getString(1) + "Image Name: " + curs.getString(2));
+    	bottleIntent.putExtra("title", curs.getString(1));
+    	bottleIntent.putExtra("fileName", curs.getString(2));
     	startActivity(bottleIntent); 
     }
+    
 
 }

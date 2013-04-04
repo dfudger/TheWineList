@@ -2,40 +2,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".MainActivity" >
-	<!-- <ListView 
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content">
-	</ListView>-->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/hello_world" />
-    
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/takePhoto"
-        android:onClick="photoButtonResponse"/>
-    
-    
-    <Button
-        android:layout_alignParentRight="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/viewGallery"
-        android:onClick="viewGalleryResponse"/>
-      <!-- android:layout_height="wrap_content" 
-      android:layout_width="wrap_content"  -->
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="750px"
-        android:layout_height="750px"
-        android:layout_alignParentLeft="true"
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:visibility="visible" />
+        android:layout_margin="20dp"
+        android:layout_marginBottom="0dp"
+        android:layout_centerHorizontal="true"
+        android:background="@color/red"
+        android:includeFontPadding="true"
+        android:onClick="photoButtonResponse"
+        android:text="@string/takePhoto"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+    
+    <Button
+        android:id="@+id/button1"
+        android:layout_below="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@color/red"
+        android:onClick="viewGalleryResponse"
+        android:text="@string/viewGallery"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
 
 </RelativeLayout>

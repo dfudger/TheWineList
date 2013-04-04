@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">wineApp</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name">Uncorked</string>
     <string name="menu_settings">Settings</string>
     
     <string name="edit_message">Enter a message</string>
@@ -17,6 +16,10 @@
     <string name="cannot">Cannot</string>
     <string name="album_name">CameraSample</string>
     <string name="addNewWine">Add a New Wine</string>
-    <color name="red">#C00000</color>
+    <color name="background">#FFF4E3</color>
+    <color name="buttonOld">#C6B299</color>
+    <color name="buttonOld2">#785D56</color>
+    <color name="red">#BE4C54</color>
+    <color name="white">#FFFFFF</color>
     
 </resources>

@@ -9,28 +9,23 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.widget.ImageView;
 
 public class MainActivity extends Activity 
 {
-	private int mWineNumber = 1;
-	private ImageView mImageView;
+	//private int mWineNumber = 1;
+	//private ImageView mImageView;
 	private Bitmap mImageBitmap;
 	private String imageFileName;
 	
@@ -44,7 +39,7 @@ public class MainActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-        mImageView = (ImageView) findViewById(R.id.imageView1);
+        //mImageView = (ImageView) findViewById(R.id.imageView1);
         
         mDbHelper = new WineDBAdapter(this);
         mDbHelper.open();     
